@@ -1,22 +1,18 @@
 # Weather App
 
-Weather info:
+Using API from https://www.weatherapi.com/
 
+Shows location weather including a 3 day forecast
 
-name	"London"
-country	"United Kingdom"
-localtime	"2023-11-14 11:47" (convert)
-temp_c	12
-temp_f	53.6
-feelslike_c	6.3
-feelslike_f	43.4
+Location can be searched via search bar
 
-is_day	0 / 1
+Introductory app to Asynchronous programs and using APIs
 
-wind_mph	4.3
-wind_kph	6.8
-wind_dir	"W"
-
-humidity	88 %
-cloud (cover)	50 %
-chance of rain 
+Technology/skills used:
+    NPM
+        webpack
+        eslint
+        prettier
+        loaders
+    Fetch data from  API
+    
