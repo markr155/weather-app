@@ -1,12 +1,20 @@
+import "../style/styles.css"
+
 console.clear();
+const test = document.querySelector('.test');
 
 function getWeather(location) {
-    fetch(`https://api.weatherapi.com/v1/current.json?key=0d23b12804e64ad0b8673526231411&q=${location}`, {mode: 'cors'}).then(function(response) {
-    return response.json();
-}).then(function(response) {;
-    console.log(response);
-    const tgon = response.current;
-})
+    const weatherInfo = {};
+    fetch(`https://api.weatherapi.com/v1/current.json?key=0d23b12804e64ad0b8673526231411&q=${location}`, 
+    {
+        mode: 'cors',
+        method: 'get',
+    })
+    .then((response) => response.json()
+    .then((resp) => {
+        weatherInfo.name = resp.location.name;
+        return weatherInfo;
+    }))
 }
 
-getWeather('traralgon');
+const x = getWeather('traralgon');
