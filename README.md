@@ -4,7 +4,7 @@ Using API from https://www.weatherapi.com/
 
 Shows location weather including a 3 day forecast
 
-Location can be searched via search bar
+Location can be searched via search bar - TBC
 
 Introductory app to Asynchronous programs and using APIs
 

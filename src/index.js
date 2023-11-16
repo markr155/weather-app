@@ -1,4 +1,5 @@
 import "../style/styles.css";
+import searchIconImage from '../search.png'
 
 // page elements
 const locationName = document.getElementById("location-name");
@@ -10,6 +11,12 @@ const wind = document.getElementById("details-wind");
 const humidity = document.getElementById("details-humidity");
 const clouds = document.getElementById("details-clouds");
 const forecastCards = document.querySelectorAll(".forecast-card");
+const search = document.getElementById('location-search');
+const searchButton = document.getElementById('search-button')
+const searchError = document.querySelector('.search-error');
+const searchIcon = document.getElementById('search-icon');
+
+searchIcon.src = searchIconImage;
 
 function dateFormat(date) {
   let dateObject = new Date(date);
@@ -47,14 +54,19 @@ function updatePage(location) {
 
 function getWeather(location) {
   const weatherInfo = {};
+  searchError.style.opacity = '0';
   fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=0d23b12804e64ad0b8673526231411&q=${location}&days=3`,
     {
       mode: "cors",
       method: "get",
     },
-  ).then((response) =>
-    response.json().then((weather) => {
+  ).then((response) => {
+      if (!response.ok) {
+        searchError.style.opacity = '1';
+        return;
+      }
+      response.json().then((weather) => {
       const currentLocation = {};
       currentLocation.name = weather.location.name;
       currentLocation.time = weather.current.last_updated.slice(11);
@@ -74,10 +86,16 @@ function getWeather(location) {
         currentLocation.forecast[i].min_temp =
           `Min: ${weather.forecast.forecastday[i].day.mintemp_c}°C`;
       }
-      console.log(currentLocation);
       updatePage(currentLocation);
-    }),
+    })}
   );
 }
 
-getWeather("traralgon");
+searchButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  getWeather(search.value);
+  search.value = '';
+});
+
+getWeather('nice');
+

@@ -10,8 +10,15 @@
 <body>
     <div class="main">
         <div class="options">
-            <label for="location-search">Search for a location</label>
-            <input type="search" id="location-search">
+            <form action="">
+                <label for="location-search">Search for a location</label>
+                <input type="search" id="location-search">
+                <button id="search-button"><img id="search-icon"></button>
+            </form>
+            <div class="search-error">
+                <p>Location not found.</p>
+                <p>Search must be in the form of "City", "City, State" or "City, Country".</p>
+            </div>
         </div>
         <div class="main-current-container">
             <div class="current-weather">
